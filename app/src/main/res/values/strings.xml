@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tea Timer</string>
+    <string name="choose_tea">Choose your tea</string>
+    <string name="long_press_hint">Tap to select · long-press to change its time</string>
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="reset">Reset</string>
+    <string name="minus30" translatable="false">−30 s</string>
+    <string name="plus30" translatable="false">+30 s</string>
+    <string name="steeping">Steeping…</string>
+    <string name="paused">Paused</string>
+    <string name="ready_status">Your tea is ready!</string>
+    <string name="water_temp">Water %1$s</string>
+    <string name="switch_blocked">Pause or reset the timer to switch tea</string>
+    <string name="set_time_for">Steep time for %1$s</string>
+    <string name="restore_default">Default</string>
+    <string name="channel_running">Running timer</string>
+    <string name="channel_ready">Tea ready alert</string>
+    <string name="ready_title">Tea is ready!</string>
+    <string name="ready_text">%1$s is done steeping. Enjoy!</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="tea_white">White tea</string>
+    <string name="tea_green">Green tea</string>
+    <string name="tea_sencha">Sencha</string>
+    <string name="tea_jasmine">Jasmine tea</string>
+    <string name="tea_oolong">Oolong</string>
+    <string name="tea_black">Black tea</string>
+    <string name="tea_earl_grey">Earl Grey</string>
+    <string name="tea_darjeeling">Darjeeling</string>
+    <string name="tea_puerh">Pu-erh</string>
+    <string name="tea_rooibos">Rooibos</string>
+    <string name="tea_herbal">Herbal tea</string>
+    <string name="tea_custom">Custom</string>
+</resources>

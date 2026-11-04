@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- cup -->
+    <path android:fillColor="#FFF3EDE4"
+        android:pathData="M33,49h37v9c0,11 -8.3,20 -18.5,20S33,69 33,58z" />
+    <!-- handle -->
+    <path android:fillColor="#FFF3EDE4"
+        android:pathData="M70,52h3.5a8,8 0,0 1,0 16H68l1.6,-4.5h3.9a3.5,3.5 0,0 0,0 -7H70z" />
+    <!-- tea surface -->
+    <path android:fillColor="#FFD4A75E" android:pathData="M35,49h33v4H35z" />
+    <!-- saucer -->
+    <path android:fillColor="#FFF3EDE4"
+        android:pathData="M28,81h48a2,2 0,0 1,0 4H28a2,2 0,0 1,0 -4z" />
+    <!-- steam -->
+    <path android:strokeColor="#FFD4A75E" android:strokeWidth="3" android:strokeLineCap="round"
+        android:pathData="M44,29c-3,4 3,6 0,11M52,25c-3,4 3,6 0,11M60,29c-3,4 3,6 0,11" />
+</vector>

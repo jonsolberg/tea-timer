@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tetimer</string>
+    <string name="choose_tea">Välj ditt te</string>
+    <string name="long_press_hint">Tryck för att välja · håll inne för att ändra tiden</string>
+    <string name="start">Starta</string>
+    <string name="pause">Pausa</string>
+    <string name="resume">Fortsätt</string>
+    <string name="reset">Nollställ</string>
+    <string name="steeping">Drar…</string>
+    <string name="paused">Pausad</string>
+    <string name="ready_status">Ditt te är klart!</string>
+    <string name="water_temp">Vatten %1$s</string>
+    <string name="switch_blocked">Pausa eller nollställ timern för att byta te</string>
+    <string name="set_time_for">Dragtid för %1$s</string>
+    <string name="restore_default">Standard</string>
+    <string name="channel_running">Pågående timer</string>
+    <string name="channel_ready">Te klart-signal</string>
+    <string name="ready_title">Teet är klart!</string>
+    <string name="ready_text">%1$s har dragit klart. Njut!</string>
+    <string name="cancel">Avbryt</string>
+
+    <string name="tea_white">Vitt te</string>
+    <string name="tea_green">Grönt te</string>
+    <string name="tea_sencha">Sencha</string>
+    <string name="tea_jasmine">Jasminte</string>
+    <string name="tea_oolong">Oolong</string>
+    <string name="tea_black">Svart te</string>
+    <string name="tea_earl_grey">Earl Grey</string>
+    <string name="tea_darjeeling">Darjeeling</string>
+    <string name="tea_puerh">Pu-erh</string>
+    <string name="tea_rooibos">Rooibos</string>
+    <string name="tea_herbal">Örtte</string>
+    <string name="tea_custom">Egen tid</string>
+</resources>
