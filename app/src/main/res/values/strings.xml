@@ -22,6 +22,14 @@
     <string name="ready_text">%1$s is done steeping. Enjoy!</string>
     <string name="cancel">Cancel</string>
 
+    <string name="stop_alarm">Stop alarm</string>
+    <string name="stop_and_open">Stop and open Tea Timer</string>
+    <string name="channel_alarm">Tea ready alarm</string>
+    <string name="fullscreen_title">Show the alarm on the lock screen?</string>
+    <string name="fullscreen_text">So you don\'t miss your tea, Tea Timer can show a full-screen "Tea is ready" alarm, even when the phone is locked. Turn on "Allow full screen notifications" on the next screen.</string>
+    <string name="fullscreen_allow">Open settings</string>
+    <string name="not_now">Not now</string>
+
     <string name="tea_white">White tea</string>
     <string name="tea_green">Green tea</string>
     <string name="tea_sencha">Sencha</string>

@@ -20,6 +20,14 @@
     <string name="ready_text">%1$s har dragit klart. Njut!</string>
     <string name="cancel">Avbryt</string>
 
+    <string name="stop_alarm">Stäng av larmet</string>
+    <string name="stop_and_open">Stäng av och öppna Tetimer</string>
+    <string name="channel_alarm">Te klart-larm</string>
+    <string name="fullscreen_title">Visa larmet på låsskärmen?</string>
+    <string name="fullscreen_text">Så att du inte missar ditt te kan Tetimer visa ett larm i helskärm när teet är klart, även när telefonen är låst. Slå på "Tillåt helskärmsaviseringar" på nästa skärm.</string>
+    <string name="fullscreen_allow">Öppna inställningar</string>
+    <string name="not_now">Inte nu</string>
+
     <string name="tea_white">Vitt te</string>
     <string name="tea_green">Grönt te</string>
     <string name="tea_sencha">Sencha</string>

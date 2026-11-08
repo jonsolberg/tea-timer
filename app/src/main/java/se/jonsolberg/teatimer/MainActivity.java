@@ -3,7 +3,12 @@ package se.jonsolberg.teatimer;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.provider.Settings;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,7 +56,9 @@ public class MainActivity extends Activity {
         teaList = findViewById(R.id.teaList);
 
         startPause.setOnClickListener(v -> {
-            if (store.isRunning()) {
+            if (AlarmService.isRinging()) {
+                AlarmService.stop(this);
+            } else if (store.isRunning()) {
                 TimerController.pause(this);
             } else {
                 TimerController.start(this);
@@ -72,6 +79,7 @@ public class MainActivity extends Activity {
         });
 
         askForNotificationPermission();
+        askForFullScreenPermission();
     }
 
     @Override
@@ -93,6 +101,28 @@ public class MainActivity extends Activity {
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
         }
+    }
+
+    /** Android 14+: the "Tea is ready" screen over the lock screen needs this permission. */
+    private void askForFullScreenPermission() {
+        if (Build.VERSION.SDK_INT < 34) return;
+        NotificationManager nm = getSystemService(NotificationManager.class);
+        if (nm.canUseFullScreenIntent()) return;
+        SharedPreferences prefs = getSharedPreferences("ui", MODE_PRIVATE);
+        if (prefs.getBoolean("askedFullScreen", false)) return;
+        prefs.edit().putBoolean("askedFullScreen", true).apply();
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.fullscreen_title)
+                .setMessage(R.string.fullscreen_text)
+                .setPositiveButton(R.string.fullscreen_allow, (d, w) -> {
+                    try {
+                        startActivity(new Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT,
+                                Uri.parse("package:" + getPackageName())));
+                    } catch (RuntimeException ignored) {
+                    }
+                })
+                .setNegativeButton(R.string.not_now, null)
+                .show();
     }
 
     private void render() {
@@ -118,6 +148,10 @@ public class MainActivity extends Activity {
         timeText.setText(format(ready ? 0 : rem));
         timeText.setTextColor(getColor(ready || (running && rem == 0) ? R.color.accent : R.color.text));
 
+        boolean alarm = AlarmService.isRinging();
+        // Blink "Your tea is ready!" while the alarm rings.
+        status.setAlpha(alarm && (now / 500) % 2 == 1 ? 0.35f : 1f);
+
         if (running) {
             status.setText(rem == 0 ? R.string.ready_status : R.string.steeping);
         } else if (ready) {
@@ -128,7 +162,8 @@ public class MainActivity extends Activity {
             status.setText("");
         }
 
-        startPause.setText(running ? R.string.pause : paused ? R.string.resume : R.string.start);
+        startPause.setText(alarm ? R.string.stop_alarm
+                : running ? R.string.pause : paused ? R.string.resume : R.string.start);
         resetButton.setVisibility(running || paused || ready || rem != store.durationMs()
                 ? View.VISIBLE : View.INVISIBLE);
 

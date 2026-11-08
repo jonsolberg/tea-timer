@@ -19,6 +19,7 @@ final class TimerController {
 
     static void select(Context c, Tea t) {
         cancelAlarm(c);
+        AlarmService.stop(c);
         Notifications.cancelRunning(c);
         Notifications.cancelReady(c);
         new TimerStore(c).select(t);
@@ -32,6 +33,7 @@ final class TimerController {
         long end = System.currentTimeMillis() + rem;
         s.setRunning(end);
         schedule(c, end);
+        AlarmService.stop(c);
         Notifications.cancelReady(c);
         Notifications.showRunning(c, s.tea(), end);
     }
@@ -47,6 +49,7 @@ final class TimerController {
 
     static void reset(Context c) {
         cancelAlarm(c);
+        AlarmService.stop(c);
         new TimerStore(c).reset();
         Notifications.cancelRunning(c);
         Notifications.cancelReady(c);
@@ -77,7 +80,13 @@ final class TimerController {
         TimerStore s = new TimerStore(c);
         s.finished(System.currentTimeMillis());
         Notifications.cancelRunning(c);
-        if (notify) Notifications.showReady(c, s.tea());
+        if (!notify) return;
+        try {
+            AlarmService.ring(c);
+        } catch (RuntimeException e) {
+            // Android refused to start the alarm service; fall back to a loud notification.
+            Notifications.showReady(c, s.tea());
+        }
     }
 
     private static void schedule(Context c, long end) {
