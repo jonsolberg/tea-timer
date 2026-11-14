@@ -25,6 +25,10 @@ A small Android tea timer (Android 8.0+). English and Swedish UI, follows the ph
 
 Defaults live in `app/src/main/java/se/jonsolberg/teatimer/Tea.java`.
 
+## Download
+
+**[Download the latest APK](https://github.com/jonsolberg/tea-timer/releases/latest/download/TeaTimer.apk)** · [all releases](https://github.com/jonsolberg/tea-timer/releases)
+
 ## Building the APK
 
 **Android Studio:** open this folder, let it sync, then *Build → Build App Bundle(s) / APK(s) → Build APK(s)*.

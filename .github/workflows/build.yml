@@ -39,3 +39,20 @@ jobs:
           git add TeaTimer.apk
           git commit -qm "APK from ${GITHUB_SHA::7}"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" apk
+
+      - name: Publish release
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(grep -oP 'versionName\s*=?\s*"\K[^"]+' app/build.gradle* | head -1)
+          TAG="v$VERSION"
+          # Fixed name, so releases/latest/download/TeaTimer.apk always points at the newest build.
+          cp "app/build/outputs/apk/debug/app-debug.apk" TeaTimer.apk
+          cp "app/build/outputs/apk/debug/app-debug.apk" "TeaTimer-$VERSION.apk"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "TeaTimer-$VERSION.apk" TeaTimer.apk --clobber
+          else
+            gh release create "$TAG" "TeaTimer-$VERSION.apk" TeaTimer.apk --target "$GITHUB_SHA" \
+              --title "Tea Timer $VERSION" --notes "Built from ${GITHUB_SHA::7}." --latest
+          fi
