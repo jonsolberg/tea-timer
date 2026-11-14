@@ -2,6 +2,11 @@
 
 A small Android tea timer (Android 8.0+). English and Swedish UI, follows the phone's language.
 
+<p align="center">
+  <img src="docs/screenshot-ready.png" width="260" alt="Tea Timer with black tea selected, ready to start">
+  <img src="docs/screenshot-steeping.png" width="260" alt="Tea Timer counting down while the tea steeps">
+</p>
+
 ## Features
 - 11 teas with steep time and water temperature, plus a custom timer
 - Long-press a tea to change its time (saved; "Default" restores it)
