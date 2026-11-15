@@ -65,6 +65,11 @@ public class MainActivity extends Activity {
             }
             render();
         });
+        findViewById(R.id.beer).setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ko-fi.com/jonsolberg")));
+            } catch (android.content.ActivityNotFoundException ignored) { }
+        });
         findViewById(R.id.minus).setOnClickListener(v -> {
             TimerController.adjust(this, -30_000);
             render();

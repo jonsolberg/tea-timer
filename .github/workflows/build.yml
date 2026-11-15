@@ -18,20 +18,36 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build debug APK
+      - name: Decode signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.SIGNING_KEYSTORE_B64 }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "SIGNING_KEYSTORE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No signing key secret – the APK will be debug-signed."
+          fi
+
+      - name: Build release APK
+        env:
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleRelease
+          mkdir -p out && cp app/build/outputs/apk/release/app-release.apk out/app.apk
 
       - uses: actions/upload-artifact@v4
         with:
           name: tea-timer-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: out/app.apk
 
       - name: Publish APK to the "apk" branch
         if: github.ref == 'refs/heads/main'
         run: |
-          mkdir /tmp/out && cp app/build/outputs/apk/debug/app-debug.apk /tmp/out/TeaTimer.apk
+          mkdir /tmp/out && cp out/app.apk /tmp/out/TeaTimer.apk
           cd /tmp/out
           git init -q -b apk
           git config user.name "github-actions"
@@ -48,8 +64,8 @@ jobs:
           VERSION=$(grep -oP 'versionName\s*=?\s*"\K[^"]+' app/build.gradle* | head -1)
           TAG="v$VERSION"
           # Fixed name, so releases/latest/download/TeaTimer.apk always points at the newest build.
-          cp "app/build/outputs/apk/debug/app-debug.apk" TeaTimer.apk
-          cp "app/build/outputs/apk/debug/app-debug.apk" "TeaTimer-$VERSION.apk"
+          cp out/app.apk TeaTimer.apk
+          cp out/app.apk "TeaTimer-$VERSION.apk"
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "TeaTimer-$VERSION.apk" TeaTimer.apk --clobber
           else
