@@ -34,6 +34,8 @@ Defaults live in `app/src/main/java/se/jonsolberg/teatimer/Tea.java`.
 
 **[Download the latest APK](https://github.com/jonsolberg/tea-timer/releases/latest/download/TeaTimer.apk)** · [all releases](https://github.com/jonsolberg/tea-timer/releases)
 
+To install the APK, allow your browser or file manager to *install unknown apps* when Android asks.
+
 ## Building the APK
 
 **Android Studio:** open this folder, let it sync, then *Build → Build App Bundle(s) / APK(s) → Build APK(s)*.

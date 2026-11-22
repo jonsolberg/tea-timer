@@ -65,11 +65,9 @@ public class MainActivity extends Activity {
             }
             render();
         });
-        findViewById(R.id.beer).setOnClickListener(v -> {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://ko-fi.com/jonsolberg")));
-            } catch (android.content.ActivityNotFoundException ignored) { }
-        });
+        findViewById(R.id.beer).setOnClickListener(v -> openUrl("https://ko-fi.com/jonsolberg"));
+        findViewById(R.id.github).setOnClickListener(v -> openUrl("https://github.com/jonsolberg/tea-timer"));
+        findViewById(R.id.site).setOnClickListener(v -> openUrl("https://jonsolberg.se:8080/"));
         findViewById(R.id.minus).setOnClickListener(v -> {
             TimerController.adjust(this, -30_000);
             render();
@@ -282,5 +280,11 @@ public class MainActivity extends Activity {
     private static String format(long ms) {
         long s = (ms + 999) / 1000;
         return String.format(Locale.ROOT, "%d:%02d", s / 60, s % 60);
+    }
+
+    private void openUrl(String url) {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        } catch (android.content.ActivityNotFoundException ignored) { }
     }
 }

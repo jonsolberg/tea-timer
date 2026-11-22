@@ -42,4 +42,6 @@
     <string name="tea_custom">Egen tid</string>
     <string name="beer_text">Tea Timer är gratis och reklamfri. Om den gör ditt te godare får du gärna stödja mig.</string>
     <string name="beer">❤️ Stöd mig via Ko-fi</string>
+    <string name="about_github">Källkod och hjälp på GitHub</string>
+    <string name="about_copyright">© 2026 Jon Solberg · fri programvara under GPL v3</string>
 </resources>

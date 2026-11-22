@@ -128,5 +128,31 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
             android:text="@string/beer" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/github"
+                style="@style/TeaButton.Text"
+                android:text="@string/about_github" />
+
+            <Button
+                android:id="@+id/site"
+                style="@style/TeaButton.Text"
+                android:text="jonsolberg.se" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="@string/about_copyright"
+            android:textColor="@color/muted"
+            android:textSize="12sp" />
     </LinearLayout>
 </ScrollView>

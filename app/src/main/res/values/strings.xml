@@ -44,4 +44,6 @@
     <string name="tea_custom">Custom</string>
     <string name="beer_text">Tea Timer is free and has no ads. If it makes your tea better, you can support me.</string>
     <string name="beer">❤️ Support me on Ko-fi</string>
+    <string name="about_github">Source and help on GitHub</string>
+    <string name="about_copyright">© 2026 Jon Solberg · free software under GPL v3</string>
 </resources>
