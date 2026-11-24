@@ -1,4 +1,4 @@
-# Tea Timer
+# Tea Timer (Android)
 
 A small Android tea timer (Android 8.0+). English and Swedish UI, follows the phone's language.
 
